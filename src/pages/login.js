@@ -29,9 +29,15 @@ export class Login extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps){
+  static getDerivedStateFromProps(nextProps,prevState){
     if(nextProps.UI.errors){
-        this.setState({errors: nextProps.UI.errors})
+        return{
+            ...prevState,
+        errors: nextProps.UI.errors
+        }
+        
+    }else{
+        return null
     }
     
   }
