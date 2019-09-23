@@ -1,11 +1,8 @@
-import React, {
-    Component
-} from 'react'
-import {
-    Link
-} from 'react-router-dom';
+import React, { Component } from 'react'
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
+import DeleteScream from './DeleteScream';
 
 //dayjs
 import dayjs from 'dayjs';
@@ -34,7 +31,8 @@ const styles = {
     card: {
         display: 'flex',
         marginBottom: 20,
-        marginRight: 20
+        marginRight: 20,
+        position: 'relative'
     },
     image: {
         minWidth: 200,
@@ -71,7 +69,7 @@ class Scream extends Component {
                 likeCount,
                 commentCount
             },
-            user:{ authenticated } 
+            user:{ authenticated, credentials: {handle} } 
 
         } = this.props;
         const likeButton = !authenticated ? (
@@ -89,6 +87,13 @@ class Scream extends Component {
                     <FavoriteBorder color="primary" />
             </MyButton>) 
         );
+        const deleteButton = authenticated &&  userHandle === handle ?(
+            //if authenticated and their own 'scream'
+            <DeleteScream screamId={screamId}/>
+        ):(
+            // either not authenticated or not their own 'scream'
+            null
+        );
         return ( 
             <div>
                 <Card className = {classes.card} >
@@ -102,7 +107,8 @@ class Scream extends Component {
                                     color = "primary"
                         > 
                         {userHandle} 
-                        </Typography> 
+                        </Typography>
+                        {deleteButton} 
                         <Typography     variant = "body2"
                                         color = "textSecondary" 
                                         > 
