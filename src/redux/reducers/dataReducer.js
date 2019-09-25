@@ -19,6 +19,11 @@ export default function(state = initialState, action){
                 screams: action.payload,
                 loading: false          
             }
+            case SET_SCREAM: 
+                return{
+                    ...state,
+                    scream: action.payload
+                }
             case LIKE_SCREAM:
             case UNLIKE_SCREAM: 
                 let index = state.screams.findIndex((scream) => scream.screamId === action.payload.screamId);
@@ -40,6 +45,7 @@ export default function(state = initialState, action){
                         ...state.screams
                     ]
                 }
+
             default:
                 return state;
                          

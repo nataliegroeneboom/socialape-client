@@ -100,7 +100,7 @@ class PostScream extends Component{
                     fullWidth
                     maxWidth="sm"
                 >
-                    <MyButton tip="Close" onClick={this.handleClose} btnClassName={classes.closeButton}>
+                    <MyButton tip="Close" onClick={this.handleClose} tipClassName={classes.closeButton}>
                             <CloseIcon />
                     </MyButton>
                     <DialogTitle>Post a new Scream</DialogTitle>
