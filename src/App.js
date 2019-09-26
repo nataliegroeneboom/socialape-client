@@ -19,6 +19,7 @@ import jwtDecode from "jwt-decode";
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
+import user from './pages/user';
 //components
 import Navbar from "./components/layout/Navbar";
 import AuthRoute from "./util/AuthRoute";
@@ -58,8 +59,12 @@ function App() {
                 exact
                 path="/signup"
                 component={signup}
-          
               />
+              <Route 
+                exact
+                path='/users/:handle'
+                component={user}
+                />
             </Switch>
           </div>
         </Router>
