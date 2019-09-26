@@ -43,12 +43,12 @@ class PostScream extends Component{
 
 
     static getDerivedStateFromProps(nextProps,prevState){
+    
         if(nextProps.UI.errors){
             return{
             errors: nextProps.UI.errors
             }
-           
-            
+              
         } 
         if(!nextProps.UI.errors && !nextProps.UI.loading){
             return{

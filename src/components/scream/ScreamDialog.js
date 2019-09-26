@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Comments from './Comments';
 import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
+import CommentForm from './CommentForm.js';
 
 
 import dayjs from 'dayjs';
@@ -27,7 +28,8 @@ import ChatIcon from '@material-ui/icons/Chat';
 //Redux
 import {connect} from 'react-redux';
 import {
-    getScream
+    getScream,
+    clearErrors
 } from '../../redux/actions/dataActions';
 
 const styles = theme =>  ({
@@ -70,7 +72,8 @@ class ScreamDialog extends Component {
     handleClose = () => {
         this.setState({
             open: false
-        })
+        });
+        this.props.clearErrors()
     }
     render() {
         console.log(this.props);
@@ -97,7 +100,7 @@ class ScreamDialog extends Component {
             </div>
          
         ): (
-            <Grid container spacing={16}>
+            <Grid container spacing={10}>
                 <Grid item sm={5}> 
                     <img src={userImage} alt="Profile" className={classes.profileImage} />
                 </Grid> 
@@ -119,6 +122,7 @@ class ScreamDialog extends Component {
                     <span> {commentCount} comments </span> 
                 </Grid> 
                 <hr className={classes.visibleSeperator} />
+                <CommentForm screamId={screamId}/>
                 <Comments comments={comments} />
             </Grid>
         )
@@ -151,7 +155,8 @@ ScreamDialog.propTypes = {
     screamId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
     scream: PropTypes.object.isRequired,
-    UI: PropTypes.object.isRequired
+    UI: PropTypes.object.isRequired,
+    clearErrors: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -159,6 +164,7 @@ const mapStateToProps = state => ({
     UI: state.UI
 });
 const mapActionsToProps = {
-    getScream
+    getScream,
+    clearErrors
 };
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ScreamDialog))
