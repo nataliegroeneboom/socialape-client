@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
  
 //material UI
-import ToolTip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 //redux
 import {connect} from 'react-redux';
-import {postScream, clearErrors} from '../redux/actions/dataActions';
+import {postScream, clearErrors} from '../../redux/actions/dataActions';
 
 const styles = theme => ({
     ...theme.spreadThis,
