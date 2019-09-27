@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Scream from '../components/scream/Scream';
 import StaticProfile from '../components/profile/StaticProfile';
+import ScreamSkeleton from '../util/ScreamSkeleton';
+import ProfileSkeleton from '../util/ProfileSkeleton';
 
 //material ui
 import Grid from '@material-ui/core/Grid';
@@ -33,7 +35,7 @@ class user extends Component {
     render() {
         const {screams, loading} = this.props.data;
         const {screamIdParam} = this.state;
-        const screamsMarkup = loading? <p> Loading Data </p> : (
+        const screamsMarkup = loading ? <ScreamSkeleton />  : (
             screams === null ? <p> No screams from this user</p> : (!screamIdParam ? (
                     screams.map(scream => <Scream key={scream.screamId} scream={scream} /> )
                 ):(
@@ -53,7 +55,7 @@ class user extends Component {
                 {screamsMarkup}
                 </Grid>
                 <Grid item sm={4} xs={12}>
-                   {this.state.profile === null ? <p>Loading profile ... </p> : (
+                   {this.state.profile === null ? <ProfileSkeleton /> : (
                        <StaticProfile profile={this.state.profile}/>
                    )}
                 </Grid>
